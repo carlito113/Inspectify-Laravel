@@ -78,20 +78,12 @@ class RevenueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Revenue $revenue)
+    public function destroy(Revenue $revenue, $id)
     {
-        //
+        $revenue = Revenue::find($id);
+        $revenue -> delete();
     }
 
-        
-    public function downloadPdf()
-
-    {
-        $revenues = Revenue::all()->toArray();
-        $pdf = PdfModel::loadView('pdf-template', $revenues);
-        return $pdf->download('Revenue.pdf');
-        
-    }
 
     public function addRevenue()
     {

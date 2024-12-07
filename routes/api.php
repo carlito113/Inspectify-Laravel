@@ -5,7 +5,8 @@ use App\Http\Controllers\ExpenseController;
 use Illuminate\Http\Request;
 use App\Models\Expense;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ProfitLossController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,9 +30,6 @@ Route::resource('edit', RevenueController::class); //edit
  
 Route::get('weekly', [RevenueController::class, "weeklyRevenues"]); //edit
  
-Route::get('/download-pdf', [PdfController::class, 'downloadPdf']);
-
-
 
 Route::get('/expenses', [ExpenseController::class, 'index']);
 
@@ -42,4 +40,10 @@ Route::put('/edit-expense/{id}', [ExpenseController::class, "update"]);
 Route::get('/expense/total', [ExpenseController::class, "totalExpense"]);
 
 Route::get('weekly-expense', [ExpenseController::class, "weeklyExpense"]);
+
+Route::get('profitloss', [ProfitLossController::class,"weeklyProfitLoss"]);
+
+Route::delete('deleteRevenue/{id}', [RevenueController::class, "destroy"]);
+
+Route::delete('deleteExpense/{id}', [ExpenseController::class, "destroy"]);
 
